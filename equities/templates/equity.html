@@ -1,9 +1,8 @@
 {% extends 'index.html' %}
 {% block content %}
-    <h1>{{ equity.id }}</h1>
     <h1>{{ equity.name }}</h1>
-    <h1>{{ equity.description }}</h1>
-
+    <p>{{ equity.description }}</p>
+    <img src=" {{ equity.source_close }}" alt="">
 
 
 

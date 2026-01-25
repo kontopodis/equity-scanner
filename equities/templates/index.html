@@ -4,21 +4,25 @@
     <title>Strategy Tester</title>
     {% load static %}
 
-<link rel="stylesheet" href="{%  static 'css.css'%}">
+    <link rel="stylesheet" href="{% static 'css.css' %}">
 </head>
 <body>
 
 <div class="navbar">
-  <div class="nav-logo">ST</div>
+    <div class="nav-logo">ST</div>
 
-  <div class="nav-links">
-      <a href="/home"><div class="nav-item">Home</div></a>
-      <a href="/strategies"><div class="nav-item">Strategies</div></a>
-    <div class="nav-item">About</div>
-    <div class="nav-item">Contact</div>
-  </div>
+    <div class="nav-links">
+        <a href="/home">
+            <div class="nav-item">Home</div>
+        </a>
+        <a href="/strategies">
+            <div class="nav-item">Strategies</div>
+        </a>
+        <div class="nav-item">About</div>
+        <div class="nav-item">Contact</div>
+    </div>
 </div>
- {% block content %}
- {% endblock %}
+{% block content %}
+{% endblock %}
 </body>
 </html>

@@ -32,7 +32,7 @@ class CacheController:
                 "data":ticker.get_5year_data(),
                 "name":e.name,
                 "ticker":e.ticker,
-                "description":e.description
+                "description":ticker.get_description()
             })
 
 

@@ -13,3 +13,6 @@ class TickerController:
 
     def get_5year_data(self):
         return self.data.history("5y")
+
+    def get_description(self):
+        return self.data.info["longBusinessSummary"]

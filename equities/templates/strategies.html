@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% load static %}
+
+{%  for n in data %}
+    <div>{{ n.name }}</div>
+<img src="{% static n.source %}">
+{% endfor %}
+{% endblock %}

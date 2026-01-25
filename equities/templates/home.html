@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div class="home-layout">
+        <div class="vnav">
+            <div class="vnav-links">
+                {% for item in data %}
+                    <a href="/{{ item.id }}"><div class="vnav-item">{{ item.name }} </div></a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="home-grid">
+            {% for equity in data %}
+
+                <div class="card">
+                    <div class="container">
+                        <h4><b>{{ equity.name }}</b></h4>
+                        <p>{{ equity.description }} </p>
+
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

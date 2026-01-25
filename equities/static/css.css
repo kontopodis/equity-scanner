@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  height: 60px;
+  background: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-item {
+  cursor: pointer;
+  position: relative;
+  font-size: 15px;
+  color:white;
+}
+.nav-item a{text-decoration: none;
+  color:white;}
+.nav-item a:hover,
+.nav-item a:visited {
+  color: white;
+}
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #00bfff;
+  transition: 0.3s;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.vnav {
+  width: 220px;
+  height: 100vh;
+  background: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.vnav-logo {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.vnav-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.vnav-item {
+  padding: 14px 25px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+}
+
+
+.vnav-item:hover {
+  background: #1f1f1f;
+}
+
+.vnav-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: #00bfff;
+  transform: scaleY(0);
+  transition: 0.3s;
+}
+
+.vnav-item:hover::before {
+  transform: scaleY(1);
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+  border-radius: 5px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+.container {
+  padding: 2px 16px;
+}
+
+.home-layout{
+  display: grid;
+  grid-template-columns: 220px auto;
+}
+
+.home-grid{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}

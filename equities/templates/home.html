@@ -1,25 +1,47 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div class="home-layout">
-        <div class="vnav">
-            <div class="vnav-links">
-                {% for item in data %}
-                    <a href="/{{ item.id }}"><div class="vnav-item">{{ item.name }} </div></a>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="home-grid">
-            {% for equity in data %}
 
+    <div class="home-grid">
+        {% for equity in data %}
+
+            <a href="/{{ equity.id }}">
                 <div class="card">
                     <div class="container">
                         <h4><b>{{ equity.name }}</b></h4>
-                        <p>{{ equity.description }} </p>
+                        <table>
+                            <tr class="headers_table">
+                                <th>Close </th>
+                                <th>Open </th>
+                                <th>Low </th>
+                                <th>High </th>
+                            </tr>
+                            <tr>
+                                <th>{{ equity.close_price }}</th>
+                                <th>{{ equity.open_price }}</th>
+                                <th>{{ equity.low_price }}</th>
+                                <th>{{ equity.high_price }}</th>
+                            </tr>
+                            <tr>
+                                <th>VWAP HIGH </th>
+                                <th>MA50 </th>
+                                <th>MA100 </th>
+                                <th>MA200</th>
+                            </tr>
+                            <tr>
+                                <th>{{ equity.vwap_high_price }}</th>
+                                <th>{{ equity.ma50_price }}</th>
+                                <th>{{ equity.ma100_price }}</th>
+                                <th> {{ equity.ma200_price }}</th>
+                            </tr>
+                        </table>
+
+                        <p></p>
+
 
                     </div>
                 </div>
-
-            {% endfor %}
-        </div>
+            </a>
+        {% endfor %}
+    </div>
     </div>
 {% endblock %}

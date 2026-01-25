@@ -80,6 +80,13 @@ body {
   transition: background 0.3s;
 }
 
+.vnav-item a{
+  text-decoration: none;
+}
+
+.nav-item a:visited{
+  color: white;
+}
 
 .vnav-item:hover {
   background: #1f1f1f;
@@ -128,4 +135,8 @@ img {
 .home-grid{
   display: grid;
   grid-template-columns: auto auto auto;
+}
+.charts{
+  display: block;
+   list-style-type: none;
 }

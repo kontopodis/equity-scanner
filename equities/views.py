@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 import matplotlib.pyplot as plt
+import pandas as pd
 from matplotlib.pyplot import figimage
 from numpy.ma.core import size
 
@@ -75,11 +76,20 @@ def equity(request, id):
         print( e["id"], id)
         if id == e["id"]:
             data = e
-            plt.figure().set_size_inches(30, 20)
             data["data"].cumsum()
-            data["data"].plot(y="Close")
+
+            data["data"].plot(y="Close",grid=True,figsize=[15,10])
             plt.savefig("equities/static/" + data["name"] + "_close.png")
             data["source_close"] = "/static/" + data["name"] + "_close.png"
+
+            data["data"].plot(y=["Close", "Vwap_low", "Vwap_high"], grid=True,figsize=[15,10])
+            plt.savefig("equities/static/"+data["name"]+"_vwap.png")
+            data["source_vwap"] = "/static/"+data["name"]+"_vwap.png"
+
+
+            data["data"].plot(y=["Close", "Ma_50","Ma_100","Ma_200"], grid=True,figsize=[15,10])
+            plt.savefig("equities/static/"+data["name"]+"_moving_averages.png")
+            data["source_moving_averages"] = "/static/"+data["name"]+"_moving_averages.png"
 
 
 

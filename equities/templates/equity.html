@@ -1,8 +1,12 @@
-{% extends 'index.html' %}
+{% extends 'home.html' %}
 {% block content %}
     <h1>{{ equity.name }}</h1>
     <p>{{ equity.description }}</p>
-    <img src=" {{ equity.source_close }}" alt="">
+
+        <img src=" {{ equity.source_close }}" alt="">
+        <img src=" {{ equity.source_vwap }}" alt="">
+        <img src=" {{ equity.source_moving_averages }}" alt="">
+
 
 
 

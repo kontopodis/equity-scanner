@@ -76,7 +76,7 @@ class VWAP:
     def find_low(self):
 
         prices = self.ticker_data
-        sorted_by_high = prices.sort_values(by="Low")
-        low = sorted_by_high.head(1)
+        sorted_by_low = prices.sort_values(by="Low")
+        low = sorted_by_low.head(1)
         return low.iloc[0]["Low"]
 

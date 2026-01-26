@@ -10,7 +10,14 @@ class TickerController:
         return self.data.history("1mo")
 
     def get_1year_data(self):
-        return self.data.history("12mo")
+        data_to_return = {}
+        temp = self.data.history("12mo")
+        with_vwap = VWAP(temp)
+        data_to_return = with_vwap.get_vwap_ticker()
+
+        ma = MovingAverages(data_to_return)
+        data_to_return = ma.get_all_ma()
+        return data_to_return
 
     def get_5year_data(self):
         data_to_return = {}

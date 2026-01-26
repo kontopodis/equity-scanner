@@ -30,6 +30,7 @@ class CacheController:
             self.add_equity({
                 "id":e.id,
                 "data":ticker.get_5year_data(),
+                "mo12_data":ticker.get_1year_data(),
                 "name":e.name,
                 "ticker":e.ticker,
                 "description":ticker.get_description()

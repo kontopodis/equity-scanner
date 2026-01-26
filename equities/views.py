@@ -103,6 +103,21 @@ def equity(request, id):
             plt.savefig("equities/static/"+data["name"]+"_moving_averages.png")
             data["source_moving_averages"] = "/static/"+data["name"]+"_moving_averages.png"
 
+            mo12_data = e
+            mo12_data["mo12_data"].plot(y="Close",grid=True,figsize=[15,10])
+            plt.savefig("equities/static/mo12_" + data["name"] + "_close.png")
+            mo12_data["source_close_mo12"] = "/static/mo12_" + data["name"] + "_close.png"
+
+            mo12_data["mo12_data"].plot(y=["Close", "Vwap_low", "Vwap_high"], grid=True,figsize=[15,10])
+            plt.savefig("equities/static/mo12_"+data["name"]+"_vwap.png")
+            data["source_vwap_mo12"] = "/static/mo12_"+data["name"]+"_vwap.png"
+
+
+            mo12_data["mo12_data"].plot(y=["Close", "Ma_50","Ma_100","Ma_200"], grid=True,figsize=[15,10])
+            plt.savefig("equities/static/mo12_"+data["name"]+"_moving_averages.png")
+            mo12_data["source_moving_averages_mo12"] = "/static/mo12_"+data["name"]+"_moving_averages.png"
+
+
 
 
 

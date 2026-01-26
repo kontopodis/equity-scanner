@@ -1,4 +1,6 @@
 import yfinance as yf
+
+from equities.controllers.pivotPointsController import PivotPoints
 from equities.controllers.vwapController import VWAP
 from equities.controllers.movingAvgController import MovingAverages
 class TickerController:
@@ -22,11 +24,16 @@ class TickerController:
     def get_5year_data(self):
         data_to_return = {}
         temp = self.data.history("5y")
+
         with_vwap = VWAP(temp)
         data_to_return = with_vwap.get_vwap_ticker()
 
         ma = MovingAverages(data_to_return)
         data_to_return = ma.get_all_ma()
+
+        pivot = PivotPoints(data_to_return)
+        data_to_return = pivot.get_all_data()
+
         return data_to_return
 
     def get_description(self):

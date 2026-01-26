@@ -103,6 +103,11 @@ def equity(request, id):
             plt.savefig("equities/static/"+data["name"]+"_moving_averages.png")
             data["source_moving_averages"] = "/static/"+data["name"]+"_moving_averages.png"
 
+
+            data["data"].plot(y=["Close", "Pivot_points"], grid=True,figsize=[15,10])
+            plt.savefig("equities/static/"+data["name"]+"_pivot_points.png")
+            data["source_pivot_points"] = "/static/"+data["name"]+"_pivot_points.png"
+
             mo12_data = e
             mo12_data["mo12_data"].plot(y="Close",grid=True,figsize=[15,10])
             plt.savefig("equities/static/mo12_" + data["name"] + "_close.png")
@@ -116,6 +121,8 @@ def equity(request, id):
             mo12_data["mo12_data"].plot(y=["Close", "Ma_50","Ma_100","Ma_200"], grid=True,figsize=[15,10])
             plt.savefig("equities/static/mo12_"+data["name"]+"_moving_averages.png")
             mo12_data["source_moving_averages_mo12"] = "/static/mo12_"+data["name"]+"_moving_averages.png"
+
+
 
 
 

@@ -4,6 +4,8 @@ body {
 }
 
 .navbar {
+  position: fixed;
+  top: 0;
   height: 60px;
   background: #111;
   color: white;
@@ -11,6 +13,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
+
 }
 
 .nav-logo {

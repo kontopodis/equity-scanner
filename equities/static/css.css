@@ -20,6 +20,7 @@ body {
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+  margin: 10px;
 }
 
 .nav-links {
@@ -112,7 +113,10 @@ body {
 .vnav-item:hover::before {
   transform: scaleY(1);
 }
-
+.equity-name{
+  text-align: center;
+  width: 100%;
+}
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -140,6 +144,7 @@ img {
 .home-grid{
   display: grid;
   grid-template-columns: auto auto auto;
+  margin: 50px;
 }
 .charts{
   display: block;
@@ -168,6 +173,9 @@ tr{
 
 }
 th{
-  text-align: left;
+  border-left: black solid 1px;
+  text-align: center;
   font-style: italic;
+  padding:5px;
+  font-size: medium;
 }

@@ -5,6 +5,9 @@
 
 {%  for n in data %}
     <div>{{ n.name }}</div>
-<img src="{% static n.source %}">
+    Stop Loss Result: {{ n.stop_loss_result }}
+    Take Profit Result: {{ n.take_profit_result }}
+    Take Profit {{ n.take_profit_counter }}
+    Stop Loss {{ n.stop_loss_counter }}
 {% endfor %}
 {% endblock %}

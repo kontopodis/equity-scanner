@@ -1,9 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 import matplotlib.pyplot as plt
-import pandas as pd
-from matplotlib.pyplot import figimage
-from numpy.ma.core import size
+from equities.strategies.pivot_P1 import BuyOnPivot
 
 from equities.controllers.cacheController import CacheController
 
@@ -33,20 +31,19 @@ def strategies(request):
     global CACHE
     CACHE.check_last_update()
     template = loader.get_template('strategies.html')
-    charts = []
+    results = []
 
     for ticker in CACHE.controller:
-        ticker["data"].cumsum()
-        ticker["data"].plot(y="Close")
-        source = "equities/static/" + ticker["name"] + ".png"
-        plt.savefig(source)
-        charts.append({
-            "name": ticker["name"],
-            "ticker": ticker["ticker"],
-            "description": ticker["description"],
-            "source": ticker["name"] + ".png",
+        st1 = BuyOnPivot(ticker["data"])
+        results.append({
+            'name': ticker['name'],
+            'stop_loss_counter': st1.stop_loss_counter,
+            'take_profit_counter': st1.take_profit_counter,
+            'stop_loss_result':st1.stop_loss_result,
+            'take_profit_result': st1.take_profit_result
         })
-    context = {"data": charts}
+
+    context = {"data": results}
 
     return HttpResponse(template.render(context, request))
 

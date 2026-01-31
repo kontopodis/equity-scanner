@@ -30,7 +30,7 @@ class PivotPoints:
                 pivot = (self.find_high()+self.find_low()+close.iloc[0]['Close']) / 3
                 self.pivot_point = pivot
 
-            print(self.pivot_point)
+
             self.pivot_point_array.append(self.pivot_point)
         self.ticker.insert(0, "Pivot_points", self.pivot_point_array)
 

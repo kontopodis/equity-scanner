@@ -104,7 +104,7 @@ def equity(request, id):
             data["source_moving_averages"] = "/static/"+data["name"]+"_moving_averages.png"
 
 
-            data["data"].plot(y=["Close", "Pivot_points"], grid=True,figsize=[15,10])
+            data["data"].plot(y=["Close", "Pivot_points","Pivot_points_r1","Pivot_points_r2","Pivot_points_s1","Pivot_points_s2"], grid=True,figsize=[15,10])
             plt.savefig("equities/static/"+data["name"]+"_pivot_points.png")
             data["source_pivot_points"] = "/static/"+data["name"]+"_pivot_points.png"
 

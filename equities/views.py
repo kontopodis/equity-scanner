@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 import matplotlib.pyplot as plt
-from equities.strategies.pivot_P1 import BuyOnPivot
+from equities.strategies.st_builder import StrategyBuilder
 
 from equities.controllers.cacheController import CacheController
 
@@ -34,13 +34,23 @@ def strategies(request):
     results = []
 
     for ticker in CACHE.controller:
-        st1 = BuyOnPivot(ticker["data"])
+        st1 = StrategyBuilder(ticker["data"])
+        st1.run()
+        possible_trade = st1.check()
+        chart_data = st1.data
+        chart_data.cumsum()
+        chart_data.plot(y=["Close",'active_trade','active_trade_loss','Pivot_points_s2','Pivot_points_r2'], grid=True, figsize=[15, 10])
+        plt.savefig("equities/static/strategy_" + ticker["name"] + "_close.png")
+
         results.append({
             'name': ticker['name'],
+            'description':st1.description,
             'stop_loss_counter': st1.stop_loss_counter,
             'take_profit_counter': st1.take_profit_counter,
             'stop_loss_result':st1.stop_loss_result,
-            'take_profit_result': st1.take_profit_result
+            'take_profit_result': st1.take_profit_result,
+            'possible_trade': possible_trade,
+            "source_close": "/static/strategy_" + ticker["name"] + "_close.png"
         })
 
     context = {"data": results}
@@ -57,12 +67,11 @@ def home(request):
     for n in equities_data:
 
         last_price = n["data"].tail(1)
-        print(last_price['Close'])
+
         temp = {
             "id": n["id"],
             "name": n["name"],
             "ticker": n['ticker'],
-            "description": n['description'],
             "close_price":round(last_price.iloc[0]['Close'],2),
             "open_price": round(last_price.iloc[0]['Open'],2),
             "low_price": round(last_price.iloc[0]['Low'],2),

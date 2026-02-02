@@ -4,24 +4,34 @@
     <title>Strategy Tester</title>
     {% load static %}
 
-    <link rel="stylesheet" href="{% static 'css.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 </head>
-<body>
+<body class="body">
 
-<div class="navbar">
-    <div class="nav-logo">ST</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Scanner</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/strategies">Equities</a>
+        </li>
 
-    <div class="nav-links">
-        <a href="/home">
-            <div class="nav-item">Home</div>
-        </a>
-        <a href="/strategies">
-            <div class="nav-item">Strategies</div>
-        </a>
-        <div class="nav-item">About</div>
-        <div class="nav-item">Update</div>
+
+      </ul>
     </div>
-</div>
+  </div>
+</nav>
+
+
 {% block content %}
 {% endblock %}
 </body>

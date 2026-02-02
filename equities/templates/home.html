@@ -1,7 +1,7 @@
 {% extends 'index.html' %}
 {% block content %}
 
-    <div class="home-grid">
+
         {% for equity in data %}
 
             <a href="/{{ equity.id }}">
@@ -42,6 +42,6 @@
                 </div>
             </a>
         {% endfor %}
-    </div>
-    </div>
+
+
 {% endblock %}

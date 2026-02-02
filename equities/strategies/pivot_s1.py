@@ -1,7 +1,7 @@
 from fontTools.misc.timeTools import timestampNow
 
 
-class BuyOnPivot:
+class BuyOnPivotS1:
     def __init__(self,data):
         self.data = data
         self.buy_price = 0
@@ -15,18 +15,18 @@ class BuyOnPivot:
         self.dollar_cost_average = 0
         self.buy_timestamp = timestampNow()
         self.sell_timestamp = timestampNow()
-
+        self.run()
 
     def run(self):
 
         for index,day in self.data.iterrows():
 
-            if day["Low"] < day['Pivot_points'] < day['High']:
+            if day["Low"] < day['Pivot_points_s1'] < day['High']:
                 if self.active_trade:
                     pass
                 else:
                     self.buy_price = day['Pivot_points']
-                    self.stop_loss = day['Pivot_points_s1']
+                    self.stop_loss = day['Pivot_points_s2']
                     self.take_profit = day['Pivot_points_r1']
                     print("Bought at: ", self.buy_price)
                     self.active_trade = True
@@ -45,10 +45,3 @@ class BuyOnPivot:
                     self.take_profit_counter += 1
                     self.active_trade = False
                     print("Took Profit at: ", self.take_profit)
-
-    def check(self):
-        last_prices = self.data.tail(1)
-        result = False
-        if last_prices.iloc[0]["Low"] < last_prices.iloc[0]['Pivot_points'] < last_prices.iloc[0]['High']:
-            result = True
-        return result

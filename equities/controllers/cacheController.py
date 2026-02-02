@@ -12,9 +12,9 @@ class CacheController:
         self.controller.clear()
 
     def check_last_update(self):
-        print(self.last_update.date(), " - ",datetime.today().date())
+
         if self.last_update.date() == datetime.today().date():
-            print(self.controller)
+
             print("Cache didn't update")
         else:
 
@@ -33,7 +33,7 @@ class CacheController:
                 "mo12_data":ticker.get_1year_data(),
                 "name":e.name,
                 "ticker":e.ticker,
-                "description":ticker.get_description()
+
             })
 
 

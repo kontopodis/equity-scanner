@@ -1,5 +1,5 @@
 from fontTools.misc.timeTools import timestampNow
-
+import pandas as pd
 
 class StrategyBuilder:
     def __init__(self,data):
@@ -15,6 +15,7 @@ class StrategyBuilder:
         self.active_trade_path = []
         self.active_trade_path_loss = []
         self.dollar_cost_average = 0
+        self.strategy_has_run = False
         self.buy_timestamp = timestampNow()
         self.sell_timestamp = timestampNow()
         self.description = 'You buy when you hit the Monthly Pivot area with a StopLoss on S2 and a Take profit on R2 when the close price is above VWAP_HIGH and above MA200 and MA50'
@@ -54,8 +55,16 @@ class StrategyBuilder:
             else:
                 self.active_trade_path.append(0)
                 self.active_trade_path_loss.append(0)
-        self.data.insert(0, "active_trade", self.active_trade_path)
-        self.data.insert(0, "active_trade_loss", self.active_trade_path_loss)
+        if 'active_trade' in self.data:
+            t1 = pd.DataFrame({'active_trade':self.active_trade_path})
+            self.data.update(t1)
+            t2 = pd.DataFrame({"active_trade_loss":self.active_trade_path_loss})
+            self.data.update(t2)
+        else:
+            self.data.insert(0, "active_trade", self.active_trade_path)
+            self.data.insert(0, "active_trade_loss", self.active_trade_path_loss)
+
+        self.strategy_has_run = True
 
     def check(self):
         last_prices = self.data.tail(1)

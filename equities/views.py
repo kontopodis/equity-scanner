@@ -20,7 +20,6 @@ def index(request):
         charts.append({
             "name": ticker["name"],
             "ticker": ticker["ticker"],
-            "description": ticker["description"],
         })
     context = {"data": charts}
 
@@ -37,6 +36,9 @@ def strategies(request):
         st1 = StrategyBuilder(ticker["data"])
         st1.run()
         possible_trade = st1.check()
+        text_possible_trade = "False"
+        if possible_trade:
+            text_possible_trade = "<b style='color:red;'>True</b>"
         chart_data = st1.data
         chart_data.cumsum()
         chart_data.plot(y=["Close",'active_trade','active_trade_loss','Pivot_points_s2','Pivot_points_r2'], grid=True, figsize=[15, 10])
@@ -49,8 +51,9 @@ def strategies(request):
             'take_profit_counter': st1.take_profit_counter,
             'stop_loss_result':st1.stop_loss_result,
             'take_profit_result': st1.take_profit_result,
-            'possible_trade': possible_trade,
-            "source_close": "/static/strategy_" + ticker["name"] + "_close.png"
+            'possible_trade': text_possible_trade,
+            "source_close": "/static/strategy_" + ticker["name"] + "_close.png",
+            "id":ticker['id']
         })
 
     context = {"data": results}
@@ -76,6 +79,11 @@ def home(request):
             "open_price": round(last_price.iloc[0]['Open'],2),
             "low_price": round(last_price.iloc[0]['Low'],2),
             "high_price": round(last_price.iloc[0]['High'],2),
+            "pivot_s2_price": round(last_price.iloc[0]['Pivot_points_s2'], 2),
+            "pivot_s1_price": round(last_price.iloc[0]['Pivot_points_s1'], 2),
+            "pivot_price": round(last_price.iloc[0]['Pivot_points'], 2),
+            "pivot_r1_price": round(last_price.iloc[0]['Pivot_points_r1'], 2),
+            "pivot_r2_price": round(last_price.iloc[0]['Pivot_points_r2'], 2),
             "vwap_high_price": round(last_price.iloc[0]['Vwap_high'], 2),
             "vwap_low_price": round(last_price.iloc[0]['Vwap_low'], 2),
             "ma50_price": round(last_price.iloc[0]['Ma_50'], 2),
@@ -110,7 +118,7 @@ def equity(request, id):
             data["source_moving_averages"] = "/static/"+data["name"]+"_moving_averages.png"
 
 
-            data["data"].plot(y=["Close", "Pivot_points","Pivot_points_r1","Pivot_points_r2","Pivot_points_s1","Pivot_points_s2"], grid=True,figsize=[15,10])
+            data["data"].plot(y=["Close", "Pivot_points","Pivot_points_r2","Pivot_points_s2"], grid=True,figsize=[15,10])
             plt.savefig("equities/static/"+data["name"]+"_pivot_points.png")
             data["source_pivot_points"] = "/static/"+data["name"]+"_pivot_points.png"
 

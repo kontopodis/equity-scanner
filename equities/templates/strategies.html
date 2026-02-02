@@ -3,28 +3,34 @@
 {% block content %}
     {% load static %}
 
-        {% for n in data %}
- <div class="container text-center">
- <div class="row">
-      <div class="col">
-            <div class="card" style="width: 18rem;">
 
-  <div class="card-body">
-    <h5 class="card-title">{{ n.name }}</h5>
-      <p class="card-text">{{ n.description }}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Stop Loss Result: {{ n.stop_loss_result }}</li>
-    <li class="list-group-item">Take Profit Result: {{ n.take_profit_result }}</li>
-    <li class="list-group-item">Take Profit: {{ n.take_profit_counter }}</li>
-      <li class="list-group-item"> Stop Loss: {{ n.stop_loss_counter }}</li>
-      <li class="list-group-item"> Possible Trade: {{ n.possible_trade }}</li>
-  </ul>
-<img src={{ n.source_close }} alt="any">
-</div>
- </div>
- </div>
- </div>
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">Equity</th>
+            <th scope="col">SL Result</th>
+            <th scope="col">SL Counter</th>
+            <th scope="col">TP Result</th>
+            <th scope="col">TP Counter</th>
+            <th scope="col">Possible Trade</th>
+            <th scope="col">Chart</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for n in data %}
+            <tr>
+
+                <td><a href="{{ n.id }}">{{ n.name }}</a></td>
+                <td>{{ n.stop_loss_result }}</td>
+                <td>{{ n.stop_loss_counter }}</td>
+                <td>{{ n.take_profit_result }}</td>
+                <td>{{ n.take_profit_counter }}</td>
+                <td>{{ n.possible_trade }}</td>
+                <td><a href="{{ n.source_close }}" target="_blank">link</a></td>
+            </tr>
         {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

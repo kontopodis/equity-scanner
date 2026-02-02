@@ -2,46 +2,54 @@
 {% block content %}
 
 
+
+
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th scope="col">Equity</th>
+            <th scope="col">Close</th>
+            <th scope="col">Open</th>
+            <th scope="col">Low</th>
+            <th scope="col">High</th>
+            <th scope="col">Pivot s2</th>
+            <th scope="col">Pivot s1</th>
+            <th scope="col">Pivot</th>
+            <th scope="col">Pivot r1</th>
+            <th scope="col">Pivot r2</th>
+            <th scope="col">VWAP high</th>
+            <th scope="col">VWAP low</th>
+            <th scope="col">MA50</th>
+            <th scope="col">MA100</th>
+            <th scope="col">MA200</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for equity in data %}
 
-            <a href="/{{ equity.id }}">
-                <div class="card">
-                    <div class="container">
-                        <h4><b>{{ equity.name }}</b></h4>
-                        <table>
-                            <tr class="headers_table">
-                                <th>Close </th>
-                                <th>Open </th>
-                                <th>Low </th>
-                                <th>High </th>
-                            </tr>
-                            <tr>
-                                <th>{{ equity.close_price }}</th>
-                                <th>{{ equity.open_price }}</th>
-                                <th>{{ equity.low_price }}</th>
-                                <th>{{ equity.high_price }}</th>
-                            </tr>
-                            <tr>
-                                <th>VWAP HIGH </th>
-                                <th>MA50 </th>
-                                <th>MA100 </th>
-                                <th>MA200</th>
-                            </tr>
-                            <tr>
-                                <th>{{ equity.vwap_high_price }}</th>
-                                <th>{{ equity.ma50_price }}</th>
-                                <th>{{ equity.ma100_price }}</th>
-                                <th> {{ equity.ma200_price }}</th>
-                            </tr>
-                        </table>
+            <tr>
 
-                        <p></p>
+                <td><a href="{{ equity.id }}">{{ equity.name }}</a></td>
+                <td>{{ equity.close_price }}</td>
+                <td>{{ equity.open_price }}</td>
+                <td>{{ equity.low_price }}</td>
+                <td>{{ equity.high_price }}</td>
+                <td>{{ equity.pivot_s2_price }}</td>
+                <td>{{ equity.pivot_s1_price }}</td>
+                <td>{{ equity.pivot_price }}</td>
+                <td>{{ equity.pivot_r1_price }}</td>
+                <td>{{ equity.pivot_r2_price }}</td>
+                <td>{{ equity.vwap_high_price }}</td>
+                <td>{{ equity.vwap_low_price }}</td>
+                <td>{{ equity.ma50_price }}</td>
+                <td>{{ equity.ma100_price }}</td>
+                <td> {{ equity.ma200_price }}</td>
+            </tr>
 
-
-                    </div>
-                </div>
-            </a>
         {% endfor %}
 
+        </tbody>
+    </table>
 
 {% endblock %}
